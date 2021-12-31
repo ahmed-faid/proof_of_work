@@ -1,0 +1,22 @@
+import hashlib
+import time
+
+genesis_block = "hello 2022"
+nonce = 0
+
+def proof_of_work():
+    start_timee = time.time()
+    while True:
+        global nonce
+        nonce+=1
+        new_block = genesis_block + str(nonce)
+        hash = hashlib.sha256(new_block.encode("utf-8")).hexdigest()
+        if hash.startswith("000000"): #you can increase complexity by changing this 
+            print(nonce,hash)
+            end_time= time.time()
+            print(f"elapsed time to do this job is {end_time - start_timee}")
+            break
+
+
+if __name__ == "__main__":
+    proof_of_work()
